@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Real Time Todo App</title>
+        <style>
+            a {text-decoration: none; color: black;}
+        </style>
+    </head>
+
+    <body>
+        <h1>Real Time Todo App</h1>
+
+        <ul>
+        <% todoList.forEach(function(todo, index) { %>
+            <li>
+                <a href="/todo/delete/<%= index %>">
+                    ✘
+                </a>
+                <span>
+                     <%= todo %>
+                </span>
+            </li>
+        <% }); %>
+        </ul>
+
+        <form action="/todo/add/" method="post">
+            <p>
+                <label for="newTodo">Add a item</label>
+                <input type="text" name="newTodo" id="newTodo" autofocus />
+                <input type="submit" />
+            </p>
+        </form>
+    </body>
+</html>
