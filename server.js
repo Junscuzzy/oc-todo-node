@@ -1,6 +1,5 @@
 const app = require('express')()
 const http = require('http').createServer(app)
-const session = require('cookie-session')
 const io = require('socket.io')(http)
 const path = require('path')
 
@@ -8,15 +7,12 @@ const path = require('path')
  * Express app
  */
 
-// Data "storage" in session
-app.use(session({ secret: 'todotopsecret' }))
-
-app.get('/todo', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.resolve('index.html'))
 })
 
 app.use((req, res, next) => {
-  res.redirect('/todo')
+  res.redirect('/')
 })
 
 /**
@@ -25,27 +21,31 @@ app.use((req, res, next) => {
 
 const todoList = []
 io.on('connection', (socket) => {
-  // Initial todo from server memory
+  // Initial todo list from server memory
   if (todoList.length > 0) {
     socket.emit('todoList', todoList)
   }
 
-  // Receive new todo and emit updated array
+  // utils
+  function emitAll() {
+    socket.emit('todoList', todoList)
+    socket.broadcast.emit('todoList', todoList)
+  }
+
+  // Add new todo and emit updated array
   socket.on('new_todo', (todo) => {
     if (todo) {
       todoList.push(todo)
+      emitAll()
     }
-    socket.emit('todoList', todoList)
-    socket.broadcast.emit('todoList', todoList)
   })
 
   // Delete todo item and emit updated array
   socket.on('delete_todo', (index) => {
     if (index) {
       todoList.splice(index, 1)
+      emitAll()
     }
-    socket.emit('todoList', todoList)
-    socket.broadcast.emit('todoList', todoList)
   })
 })
 

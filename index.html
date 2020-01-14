@@ -15,7 +15,7 @@
             <!-- The todo List items will be here  -->
         </ul>
 
-        <form id="addTodo" action="/todo/add/" method="post">
+        <form id="addTodo">
             <p>
                 <label for="newTodo">Add a item</label>
                 <input type="text" id="newTodo" autofocus required />
@@ -37,7 +37,7 @@
                 var socket = io();
                 var ulTodoList = $('#todoList');
 
-                // When todo list change from server
+                // On receive new todo list from server
                 socket.on('todoList', function(todoList)  {
                     // Clean <ul> & Print new HTML inside
                     ulTodoList.find('*').remove();
@@ -47,14 +47,15 @@
                         ulTodoList.append('<li>'+ button + text + '</li>');
                     }
 
-                    // Listen 'delete' click event after outputted
+                    // After the HTML outputted,
+                    // we can listening the 'delete' event click
                     ulTodoList.find('a').on('click', function(e) {
                         e.preventDefault();
                         socket.emit('delete_todo', $(this).attr('data-index'));
                     });
                 });
 
-                // On form submit send new todo
+                // Send new todo when form is submitted
                 $('form#addTodo').submit(function(e) {
                     e.preventDefault();
                     var input = $(this).find('#newTodo');
