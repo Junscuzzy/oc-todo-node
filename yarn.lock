@@ -184,20 +184,6 @@ blob@0.0.5:
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.5.tgz#d680eeef25f8cd91ad533f5b01eed48e64caf683"
   integrity sha512-gaqbzQPqOoamawKg0LGVd7SzLgXS+JH61oWprSLH+P+abTczqJbhTR8CmJ2u9/bUYNmHTGJx/UEmn6doAvvuig==
 
-body-parser@~1.10.1:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.10.2.tgz#405d465fcd3ccf0ea8a35adbf1055f6e98316bd1"
-  integrity sha1-QF1GX808zw6oo1rb8QVfbpgxa9E=
-  dependencies:
-    bytes "1.0.0"
-    depd "~1.0.0"
-    iconv-lite "0.4.6"
-    media-typer "0.3.0"
-    on-finished "~2.2.0"
-    qs "2.3.3"
-    raw-body "1.3.2"
-    type-is "~1.5.5"
-
 boxen@^1.2.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-1.3.0.tgz#55c6c39a8ba58d9c61ad22cd877532deb665a20b"
@@ -225,11 +211,6 @@ braces@~3.0.2:
   integrity sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==
   dependencies:
     fill-range "^7.0.1"
-
-bytes@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/bytes/-/bytes-1.0.0.tgz#3569ede8ba34315fab99c3e92cb04c7220de1fa8"
-  integrity sha1-NWnt6Lo0MV+rmcPpLLBMciDeH6g=
 
 callsite@1.0.0:
   version "1.0.0"
@@ -522,11 +503,6 @@ ee-first@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.0.tgz#6a0d7c6221e490feefd92ec3f441c9ce8cd097f4"
   integrity sha1-ag18YiHkkP7v2S7D9EHJzozQl/Q=
-
-ejs@~2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.1.4.tgz#bd005ff17b621a96ed296714b1a84fdae1b2932c"
-  integrity sha1-vQBf8XtiGpbtKWcUsahP2uGykyw=
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -1013,11 +989,6 @@ hosted-git-info@^2.1.4:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.5.tgz#759cfcf2c4d156ade59b0b2dfabddc42a6b9c70c"
   integrity sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg==
-
-iconv-lite@0.4.6:
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.6.tgz#e39c682610a791f3eedc27382ff49e263f91fa09"
-  integrity sha1-45xoJhCnkfPu3Cc4L/SeJj+R+gk=
 
 iconv-lite@^0.4.24:
   version "0.4.24"
@@ -1742,14 +1713,6 @@ range-parser@~1.0.2:
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.0.3.tgz#6872823535c692e2c2a0103826afd82c2e0ff175"
   integrity sha1-aHKCNTXGkuLCoBA4Jq/YLC4P8XU=
 
-raw-body@1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-1.3.2.tgz#0e186f27c5fbfe326d8b3062774804564a0ecf93"
-  integrity sha1-DhhvJ8X7/jJtizBid0gEVkoOz5M=
-  dependencies:
-    bytes "1.0.0"
-    iconv-lite "0.4.6"
-
 rc@^1.0.1, rc@^1.1.6:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.8.tgz#cd924bf5200a075b83c188cd6b9e211b7fc0d3ed"
@@ -2175,7 +2138,7 @@ type-fest@^0.8.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
-type-is@~1.5.5, type-is@~1.5.6:
+type-is@~1.5.6:
   version "1.5.7"
   resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.5.7.tgz#b9368a593cc6ef7d0645e78b2f4c64cbecd05e90"
   integrity sha1-uTaKWTzG730GReeLL0xky+zQXpA=

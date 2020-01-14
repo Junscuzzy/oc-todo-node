@@ -1,44 +1,18 @@
 const app = require('express')()
 const http = require('http').createServer(app)
 const session = require('cookie-session')
-const bodyParser = require('body-parser')
 const io = require('socket.io')(http)
+const path = require('path')
 
 /**
- * 1) Express.js app
- * - Routes
+ * Express app
  */
-
-// For form
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // Data "storage" in session
 app.use(session({ secret: 'todotopsecret' }))
 
-// create empty todolist if doesn't exists
-app.use((req, res, next) => {
-  if (typeof (req.session.todoList) === 'undefined') {
-    req.session.todoList = []
-  }
-  next()
-})
-
 app.get('/todo', (req, res) => {
-  res.render('todo.ejs', { todoList: req.session.todoList })
-})
-
-app.post('/todo/add/', urlencodedParser, (req, res) => {
-  if (req.body.newTodo != '') {
-    req.session.todoList.push(req.body.newTodo)
-  }
-  res.redirect('/todo')
-})
-
-app.get('/todo/delete/:id', (req, res) => {
-  if (req.params.id != '') {
-    req.session.todoList.splice(req.params.id, 1)
-  }
-  res.redirect('/todo')
+  res.sendFile(path.resolve('index.html'))
 })
 
 app.use((req, res, next) => {
@@ -46,19 +20,32 @@ app.use((req, res, next) => {
 })
 
 /**
- * 1) Socket.js part.
- * Real time app part.
+ * Real time part. using Socket.js
  */
-io.on('connection', (socket) => {
-  socket.on('new_user', (name) => {
-    console.log(`New user connected named: ${name}`)
-    socket.userName = name
 
-    socket.broadcast.emit('has_new_user', name)
+const todoList = []
+io.on('connection', (socket) => {
+  // Initial todo from server memory
+  if (todoList.length > 0) {
+    socket.emit('todoList', todoList)
+  }
+
+  // Receive new todo and emit updated array
+  socket.on('new_todo', (todo) => {
+    if (todo) {
+      todoList.push(todo)
+    }
+    socket.emit('todoList', todoList)
+    socket.broadcast.emit('todoList', todoList)
   })
 
-  socket.on('disconnect', () => {
-    console.log(`${socket.userName || 'user'} disconnected`)
+  // Delete todo item and emit updated array
+  socket.on('delete_todo', (index) => {
+    if (index) {
+      todoList.splice(index, 1)
+    }
+    socket.emit('todoList', todoList)
+    socket.broadcast.emit('todoList', todoList)
   })
 })
 
